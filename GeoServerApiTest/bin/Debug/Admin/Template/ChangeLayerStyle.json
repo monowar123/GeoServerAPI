@@ -1,0 +1,26 @@
+{
+	"layer": {
+		"name": "#layer_name#",
+		"type": "VECTOR",
+		"defaultStyle": {
+			"name": "#style_name#",
+			"href": "#API_BASE_URL#styles/#style_name#.json"
+		},
+		"styles": {
+			"@class": "linked-hash-set",
+			"style": [{
+				"name": "#style_name#",
+				"href": "#API_BASE_URL#styles/#style_name#.json"
+			}]
+		},
+		"resource": {
+			"@class": "featureType",
+			"name": "#layer_name#",
+			"href": "#API_BASE_URL#workspaces/#workspace_name#/datastores/#datastore_name#/featuretypes/#layer_name#.json"
+		},
+		"attribution": {
+			"logoWidth": 0,
+			"logoHeight": 0
+		}
+	}
+}

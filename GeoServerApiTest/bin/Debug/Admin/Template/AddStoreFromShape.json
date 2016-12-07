@@ -1,0 +1,58 @@
+{
+    "dataStore": {
+        "name": "#datastore_name#",
+        "description": "#datastore_name#",
+        "type": "Shapefile",
+        "enabled": true,
+        "workspace": {
+            "name": "#workspace_name#",
+            "href": "#API_BASE_URL#workspaces/#workspace_name#.json"
+        },
+        "connectionParameters": {
+            "entry": [
+                {
+                    "@key": "charset",
+                    "$": "ISO-8859-1"
+                },
+                {
+                    "@key": "filetype",
+                    "$": "shapefile"
+                },
+                {
+                    "@key": "create spatial index",
+                    "$": "true"
+                },
+                {
+                    "@key": "memory mapped buffer",
+                    "$": "false"
+                },
+                {
+                    "@key": "timezone",
+                    "$": "Europe/Berlin"
+                },
+                {
+                    "@key": "enable spatial index",
+                    "$": "true"
+                },
+                {
+                    "@key": "namespace",
+                    "$": "http://bgtviewer.chalois.com/#workspace_name#"
+                },
+                {
+                    "@key": "cache and reuse memory maps",
+                    "$": "true"
+                },
+                {
+                    "@key": "url",
+                    "$": "file:#shape_file_name#"
+                },
+                {
+                    "@key": "fstype",
+                    "$": "shape"
+                }
+            ]
+        },
+        "_default": false,
+        "featureTypes": "#API_BASE_URL#workspaces/#workspace_name#/datastores/#datastore_name#/featuretypes.json"
+    }
+}

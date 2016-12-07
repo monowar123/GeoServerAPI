@@ -1,0 +1,13 @@
+{
+	"style": {
+		"name": "#style_name#",
+		"workspace": {
+			"name": "#workspace_name#"
+		},
+		"format": "sld",
+		"languageVersion": {
+			"version": "1.0.0"
+		},
+		"filename": "#style_name#.sld"
+	}
+}

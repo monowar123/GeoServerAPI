@@ -1,0 +1,10 @@
+E:\PROJECTS\AO00\GeoServerAPI\GeoServerAPI\bin\Debug\GeoServerAPI.exe.config
+E:\PROJECTS\AO00\GeoServerAPI\GeoServerAPI\bin\Debug\GeoServerAPI.exe
+E:\PROJECTS\AO00\GeoServerAPI\GeoServerAPI\bin\Debug\GeoServerAPI.pdb
+E:\PROJECTS\AO00\GeoServerAPI\GeoServerAPI\obj\Debug\GeoServerAPI.csprojResolveAssemblyReference.cache
+E:\PROJECTS\AO00\GeoServerAPI\GeoServerAPI\obj\Debug\GeoServerAPI.exe
+E:\PROJECTS\AO00\GeoServerAPI\GeoServerAPI\obj\Debug\GeoServerAPI.pdb
+E:\GeoServerAPI\GeoServerAPI\bin\Debug\GeoServerAPI.dll
+E:\GeoServerAPI\GeoServerAPI\bin\Debug\GeoServerAPI.pdb
+E:\GeoServerAPI\GeoServerAPI\obj\Debug\GeoServerAPI.dll
+E:\GeoServerAPI\GeoServerAPI\obj\Debug\GeoServerAPI.pdb

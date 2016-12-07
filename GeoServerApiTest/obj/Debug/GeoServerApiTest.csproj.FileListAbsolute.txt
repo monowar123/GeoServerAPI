@@ -1,0 +1,9 @@
+E:\GeoServerAPI\GeoServerApiTest\bin\Debug\GeoServerApiTest.exe.config
+E:\GeoServerAPI\GeoServerApiTest\bin\Debug\GeoServerApiTest.exe
+E:\GeoServerAPI\GeoServerApiTest\bin\Debug\GeoServerApiTest.pdb
+E:\GeoServerAPI\GeoServerApiTest\bin\Debug\GeoServerAPI.dll
+E:\GeoServerAPI\GeoServerApiTest\bin\Debug\GeoServerAPI.pdb
+E:\GeoServerAPI\GeoServerApiTest\obj\Debug\GeoServerApiTest.csprojResolveAssemblyReference.cache
+E:\GeoServerAPI\GeoServerApiTest\obj\Debug\GeoServerApiTest.exe
+E:\GeoServerAPI\GeoServerApiTest\obj\Debug\GeoServerApiTest.pdb
+E:\GeoServerAPI\GeoServerApiTest\bin\Debug\Newtonsoft.Json.dll

@@ -1,0 +1,37 @@
+{
+	"featureType": {
+		"name": "#layer_name#",
+		"nativeName": "#native_name#",
+		"namespace": {
+			"name": "#workspace_name#",
+			"href": "#API_BASE_URL#namespaces/#workspace_name#.json"
+		},
+		"title": "#layer_name#",
+		"keywords": {
+			"string": ["#layer_name#", "features"]
+		},
+		"nativeCRS": {
+			"@class": "projected",
+			"$": "PROJCS[\"RD_New\", \r\n  GEOGCS[\"GCS_Amersfoort\", \r\n    DATUM[\"D_Amersfoort\", \r\n      SPHEROID[\"Bessel_1841\", 6377397.155, 299.1528128]], \r\n    PRIMEM[\"Greenwich\", 0.0], \r\n    UNIT[\"degree\", 0.017453292519943295], \r\n    AXIS[\"Longitude\", EAST], \r\n    AXIS[\"Latitude\", NORTH]], \r\n  PROJECTION[\"Oblique_Stereographic\"], \r\n  PARAMETER[\"central_meridian\", 5.38763888888889], \r\n  PARAMETER[\"latitude_of_origin\", 52.15616055555555], \r\n  PARAMETER[\"scale_factor\", 0.9999079], \r\n  PARAMETER[\"false_easting\", 155000.0], \r\n  PARAMETER[\"false_northing\", 463000.0], \r\n  UNIT[\"m\", 1.0], \r\n  AXIS[\"x\", EAST], \r\n  AXIS[\"y\", NORTH]]"
+		},
+		"srs": "EPSG:28992",
+		"projectionPolicy": "FORCE_DECLARED",
+		"enabled": true,
+		"metadata": {
+			"entry": {
+				"@key": "cachingEnabled",
+				"$": "false"
+			}
+		},
+		"store": {
+			"@class": "dataStore",
+			"name": "#workspace_name#:#datastore_name#",
+			"href": "#API_BASE_URL#workspaces/#workspace_name#/datastores/#datastore_name#.json"
+		},
+		"maxFeatures": 0,
+		"numDecimals": 0,
+		"overridingServiceSRS": false,
+		"skipNumberMatched": false,
+		"circularArcPresent": false
+	}
+}
