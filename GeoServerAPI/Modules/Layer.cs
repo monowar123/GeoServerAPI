@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.CSharp.RuntimeBinder;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,6 +24,54 @@ namespace GeoServerAPI
             {
                 rc.EndPoint = Path.Combine(Global.API_BASE_URL, "layers.json");
                 response = rc.MakeRequest();
+            }
+            catch (Exception ex)
+            {
+                return ex.Message.ToString();
+            }
+
+            return response;
+        }
+
+        public string GetAllLayers(string workspace)
+        {
+            string response = string.Empty;
+            try
+            {
+                DataStore store = new DataStore();
+                response = store.Get(workspace);
+                var dataStoreObject = JsonConvert.DeserializeObject<dynamic>(response);
+                var layerObject = (dynamic)null;
+
+                if (Global.IsPropertyExists(dataStoreObject.dataStores, "dataStore"))
+                {
+                    foreach (var record in dataStoreObject.dataStores.dataStore)
+                    {
+                        response = GetAllLayers(workspace, Convert.ToString(record.name));
+                        var temp = JsonConvert.DeserializeObject<dynamic>(response);
+                        if (Global.IsPropertyExists(temp.featureTypes, "featureType"))
+                        {
+                            if (layerObject == null)
+                            {
+                                layerObject = temp;
+                            }
+                            else
+                            {
+                                foreach (var t in temp.featureTypes.featureType)
+                                {
+                                    layerObject.featureTypes.featureType.Add(t);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                response = JsonConvert.SerializeObject(layerObject);
+
+            }
+            catch (RuntimeBinderException ex)
+            {
+                return ex.Message.ToString();
             }
             catch (Exception ex)
             {

@@ -41,6 +41,7 @@ namespace GeoServerAPI
                 jsonText = File.ReadAllText(filePath);
                 jsonText = jsonText.Replace("#workspace_name#", workspace).Replace("#datastore_name#", dataStore).Replace("#layer_name#", layerName).Replace("#native_name#", nativeName).Replace("#style_name#", styleName).Replace("#style_file_name#", styleFileName).Replace("#shape_file_name#", shapeFileName);
                 jsonText = jsonText.Replace("#API_BASE_URL#", GetAppConfigValue("API_BASE_URL"));
+                jsonText = jsonText.Replace("#GEO_URL#", GetAppConfigValue("GEO_URL"));
             }
             catch (Exception ex)
             {

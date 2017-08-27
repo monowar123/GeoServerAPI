@@ -11,30 +11,32 @@ namespace GeoServerApiTest
     {
         static void Main(string[] args)
         {
-            string response = string.Empty;
-            Workspace wpk = new Workspace();
-            DataStore store = new DataStore();
-            Layer layer = new Layer();
-            LayerStyle style = new LayerStyle();
+            try
+            {
+                string response = string.Empty;
+                Workspace wpk = new Workspace();
+                DataStore store = new DataStore();
+                Layer layer = new Layer();
+                LayerStyle style = new LayerStyle();
 
-            var watch = System.Diagnostics.Stopwatch.StartNew();
+                var watch = System.Diagnostics.Stopwatch.StartNew();
 
+                //response = wpk.Add("GeoTest");
+                //response = store.AddStoreFromDb("GeoTest", "geoDb", "ACC1");
+                //response = layer.AddLayerFromDb("GeoTest", "geoDb", "hitbgt", "hitbgt", "polygon");
 
-            //response = store.Delete("m_test", "storeFromShape");
-            //response = store.AddStoreFromShape("m_test", "storeFromShape", "data/m_test/storeFromShape/bag3/BAG3");
-            //response = store.UploadShapeFile("m_test", "folderName", "D:/bag3.zip");
+                response = wpk.GetNamespaceUri("MT12");
 
-            response = layer.GetLayerDetails("DO19", "l1");
+                Console.WriteLine(response);
 
-            //response = store.GetResources("data/");
-
-            Console.WriteLine(response);
-
-
-
-            watch.Stop();
-            var time = watch.ElapsedMilliseconds / 1000;
-            Console.WriteLine(Convert.ToString(time));
+                watch.Stop();
+                var time = watch.ElapsedMilliseconds / 1000;
+                Console.WriteLine(Convert.ToString(time));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
 
             Console.ReadKey();
         }

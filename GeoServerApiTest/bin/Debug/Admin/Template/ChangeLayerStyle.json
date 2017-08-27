@@ -4,12 +4,14 @@
 		"type": "VECTOR",
 		"defaultStyle": {
 			"name": "#style_name#",
+			"workspace": "#workspace_name#",
 			"href": "#API_BASE_URL#styles/#style_name#.json"
 		},
 		"styles": {
 			"@class": "linked-hash-set",
 			"style": [{
 				"name": "#style_name#",
+				"workspace": "#workspace_name#",
 				"href": "#API_BASE_URL#styles/#style_name#.json"
 			}]
 		},

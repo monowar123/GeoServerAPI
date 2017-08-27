@@ -1,7 +1,7 @@
 {
     "namespace": {
         "prefix": "#workspace_name#",
-        "uri": "http://bgtviewer.chalois.com/#workspace_name#",
+        "uri": "#GEO_URL##workspace_name#",
         "featureTypes": "#API_BASE_URL#workspaces/#workspace_name#/featuretypes.json"
     }
 }

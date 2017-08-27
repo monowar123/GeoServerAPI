@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.IO;
 
 namespace GeoServerAPI
@@ -39,6 +40,37 @@ namespace GeoServerAPI
             catch (Exception ex)
             {
                 return ex.Message.ToString();
+            }
+
+            return response;
+        }
+
+        public string GetNamespaceUri(string workspace)
+        {
+            string response = string.Empty;
+            try
+            {
+                rc.EndPoint = Path.Combine(Global.API_BASE_URL, "namespaces", workspace + ".json");
+                rc.Method = HttpVerb.GET;
+                response = rc.MakeRequest();
+
+                var namespaceObject = JsonConvert.DeserializeObject<dynamic>(response);
+                if (Global.IsPropertyExists(namespaceObject, "namespace"))
+                {
+                    response = namespaceObject["namespace"].uri;
+                }
+                else
+                {
+                    throw new Exception("Namespace not found");
+                }
+            }
+            catch (JsonException)
+            {
+                throw new Exception("Problem in deserialize json object from GetNamespaceUri()");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
             }
 
             return response;

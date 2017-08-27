@@ -258,15 +258,27 @@ namespace GeoServerAPI
             {              
                 if (workspace != "")
                 {
-                    rc.EndPoint = Path.Combine(Global.API_BASE_URL, "workspaces", workspace, "styles", styleName);
+                    rc.EndPoint = Path.Combine(Global.API_BASE_URL, "workspaces", workspace, "styles", styleName + "?raw=true");
                 }
                 else
                 {
-                    rc.EndPoint = Path.Combine(Global.API_BASE_URL, "styles", styleName);
+                    rc.EndPoint = Path.Combine(Global.API_BASE_URL, "styles", styleName + "?raw=true");
                 }
                 rc.Method = HttpVerb.PUT;
+
+                styleFileContent = styleFileContent.Replace("se:", "").Replace("SvgParameter", "CssParameter");
+
+                string sldVersion = GetSldVersion(styleFileContent);
+
                 rc.PostData = styleFileContent;
-                rc.ContentType = "application/vnd.ogc.sld+xml";
+
+                if (string.IsNullOrEmpty(sldVersion))
+                {
+                    return "Uploaded sld file has a missing attribute: SLD Version.";
+                }
+
+                // for 1.1.0, it is 'se+xml'; for 1.0.0, it is 'sld+xml'
+                rc.ContentType = (sldVersion != "1.0.0") ? "application/vnd.ogc.se+xml" : "application/vnd.ogc.sld+xml";
                 response = rc.MakeRequest();
             }
             catch (Exception ex)
@@ -303,11 +315,11 @@ namespace GeoServerAPI
             {
                 if (workspace != "")
                 {
-                    rc.EndPoint = Path.Combine(Global.API_BASE_URL, "workspaces", workspace, "styles", styleName);
+                    rc.EndPoint = Path.Combine(Global.API_BASE_URL, "workspaces", workspace, "styles", styleName + "?recurse=true");
                 }
                 else
                 {
-                    rc.EndPoint = Path.Combine(Global.API_BASE_URL, "styles", styleName);
+                    rc.EndPoint = Path.Combine(Global.API_BASE_URL, "styles", styleName + "?recurse=true");
                 }
                 rc.Method = HttpVerb.DELETE;
              
@@ -332,6 +344,28 @@ namespace GeoServerAPI
             {
                 return "duplicate";
             }
+        }
+        private string GetSldVersion(string xmlContent)
+        {
+            string sldVersion = string.Empty;
+            XmlDocument xml = new XmlDocument();
+            xml.LoadXml(xmlContent);
+
+            XmlNodeList xmlNodeList = xml.GetElementsByTagName("StyledLayerDescriptor");
+            if (xmlNodeList.Count == 0)
+            {
+                xmlNodeList = xml.GetElementsByTagName("sld:StyledLayerDescriptor");
+            }
+
+            if (xmlNodeList.Count == 1)
+            {
+                if (xmlNodeList[0].Attributes != null && xmlNodeList[0].Attributes["version"] != null)
+                {
+                    sldVersion = xmlNodeList[0].Attributes["version"].Value;
+                }
+            }
+
+            return sldVersion;
         }
     }
 }

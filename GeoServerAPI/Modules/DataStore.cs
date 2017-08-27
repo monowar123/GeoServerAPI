@@ -78,9 +78,14 @@ namespace GeoServerAPI
                 string port = Utilities.GetAppConfigValue("Port");
                 string userId = Utilities.GetAppConfigValue("User_Id");
                 string password = Utilities.GetAppConfigValue("Password");
+                string namespace_uri = string.Empty;
+
+                Workspace wpkObject = new Workspace();
+                namespace_uri = wpkObject.GetNamespaceUri(workspace);
 
                 jsonText = Utilities.GetJsonText("AddStoreFromDb.json", workspace, dataStore);
                 jsonText = jsonText.Replace("#host_name#", hostName).Replace("#port#", port).Replace("#user_id#", userId).Replace("#password#", password).Replace("#db_name#", dbName);
+                jsonText = jsonText.Replace("#namespace_uri#", namespace_uri);
 
                 rc.EndPoint = Path.Combine(Global.API_BASE_URL, "workspaces", workspace, "datastores");
                 rc.Method = HttpVerb.POST;
@@ -101,13 +106,18 @@ namespace GeoServerAPI
             string response = string.Empty;
             try
             {
+                string namespace_uri = string.Empty;
                 string status = CheckDuplicate(workspace, dataStore);
                 if (status == "duplicate")
                 {
                     return status;
                 }
 
+                Workspace wpkObject = new Workspace();
+                namespace_uri = wpkObject.GetNamespaceUri(workspace);
+
                 string jsonText = Utilities.GetJsonText("AddStoreFromShape.json", workspace, dataStore, shapeFileName: shapeFileName);
+                jsonText = jsonText.Replace("#namespace_uri#", namespace_uri);
 
                 rc.EndPoint = Path.Combine(Global.API_BASE_URL, "workspaces", workspace, "datastores");
                 rc.Method = HttpVerb.POST;
@@ -162,7 +172,7 @@ namespace GeoServerAPI
                 rc.ContentType = "application/zip";
                 response = rc.MakeRequest(shapeFile);
 
-                if (response == "Created")
+                if (response == "Created" || response == "Accepted")
                 {
                     Delete(workspace, dataStore);
                 }
